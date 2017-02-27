@@ -1,4 +1,4 @@
-#Utility functions for MRMPI library</br>
+#Utility functions for working with MPI library</br>
 </br>
 This library provides functions that might be useful while writing programs using MPI. I write these functions as I find the need for them. They can be updated and/or appended with new utilites anytime. Most of these functions are `static` and can be used without instantiation of an object of this class.</br>
 </br>

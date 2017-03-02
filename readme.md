@@ -16,7 +16,7 @@ MpiUtil::gatherv_string_container(&vec, root_proc_rank, &gathered_strings);
 The root processor number should be smaller than the number of processors in the used `MPI_Comm`.</br>
 </br>
 **broadcast_string_container:**</br>
-This function can be used to broadcast a container of strings (with begin and end iterators, such as std::vector(std::string), std::unordered_Set<std::string>, etc.) to all processors in MPI_COMM_WORLD.</br>
+This function can be used to broadcast a container of strings (with begin and end iterators, such as std::vector(std::string), std::unordered_Set<std::string>, etc.) to all processors in the specified MPI_Comm (or MPI_COMM_WORLD by default).</br>
 It accepts the root processor's rank and a pointer to the input container as arguments, the broadcasted container can be accessed through the same pointer to the container (input/output argument).<\br>
 The last parameter is an optional MPI_Comm communication group. If the third argument is not provided during a call to the function, MPI_COMM_WORLD is used instead.
 ```c++
@@ -34,6 +34,6 @@ The function concatenates the strings on each of the processors and uses a MPI_A
 ```c++
 std::vector<std::string> vec(2, "str"); //str, str
 std::list<std::string> gathered_strings;
-MpiUtil::gatherv_string_container(&vec, &gathered_strings);
+MpiUtil::allgatherv_string_container(&vec, &gathered_strings);
 ```
 

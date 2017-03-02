@@ -11,7 +11,7 @@ public:
 			char local_input_char_array[local_input_size];
 			memcpy(local_input_char_array, &local_input_vector[0], local_input_size);
 			char* output_char_array = NULL;
-			allgatherv_char_array(local_input_char_array, local_input_size, &output_char_array, &output_size);
+			allgatherv_char_array(local_input_char_array, local_input_size, &output_char_array, &output_size, comm);
 			std::vector<char> output_vector(output_char_array, output_char_array + output_size);
 			extract_strings(output_vector.begin(), output_vector.end(), output);
 			if (output_char_array) delete[] output_char_array;
@@ -24,7 +24,7 @@ public:
 			char local_input_char_array[local_input_size];
 			memcpy(local_input_char_array, &local_input_vector[0], local_input_size);
 			char* output_char_array = NULL;
-			gatherv_char_array(local_input_char_array, local_input_size, &output_char_array, &output_size, root);
+			gatherv_char_array(local_input_char_array, local_input_size, &output_char_array, &output_size, root, comm);
 			int me;
 			MPI_Comm_rank(MPI_COMM_WORLD, &me);
 			if (me == root) {
